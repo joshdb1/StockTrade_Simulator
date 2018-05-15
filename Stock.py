@@ -37,11 +37,11 @@ class Stock:
         self.mva = self.calcMVA()
 
         # calculates the total return amount by calling buy low and sell high functions
-        # according to closing prices and MVA
+        # according to closing prices and MVA. Sells all shares on day 95
         for i in range(95):
-            if self.mva[i] < self.closingPrices[i + 5] and self.shares == 0:
+            if self.mva[i] < self.closingPrices[i + 5] and self.shares == 0 and i != 94:
                 self.buyLow(i)
-            elif self.mva[i] > self.closingPrices[i + 5] and self.shares != 0:
+            elif self.mva[i] > self.closingPrices[i + 5] and self.shares != 0 or i == 94:
                 self.sellHigh(i)
 
     # decodes the stock data from AlphaVantage given a ticker
